@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anisha 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 25px;
+      text-align: center;
+      width: 330px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #ff3b6f;
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: #555;
+      font-size: 15px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 20px;
+      margin: 15px 0;
+      box-shadow: 0 10px 25px rgba(255,75,110,0.4);
+    }
+
+    .buttons {
+      margin-top: 20px;
+      position: relative;
+      height: 80px;
+    }
+
+    button {
+      padding: 12px 22px;
+      font-size: 15px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      transition: 0.3s;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+      left: 15px;
+    }
+
+    #yesss {
+      background: #ff85a2;
+      color: white;
+      right: 15px;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 22px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bgMusic" loop>
+    <source src="only-in-my-mind.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="card">
+    <h1>Anisha 💕</h1>
+    <p>
+      I was thinking…<br>
+      about life, love, vibes — and you.<br>
+      And I had one very serious question 😌
+    </p>
+
+    <img src="your-photo.jpg" alt="Us 💖">
+
+    <h2>Will you be my Valentine? 💘</h2>
+
+    <div class="buttons">
+      <button id="yes" onclick="yesClicked()">Yes 💖</button>
+      <button id="yesss" onclick="yesClicked()">Yesssss 😌💞</button>
+    </div>
+  </div>
+
+  <script>
+    const music = document.getElementById("bgMusic");
+
+    function yesClicked() {
+      music.play();
+      confettiBoom();
+
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          flex-direction:column;
+          background:linear-gradient(135deg,#ff758c,#ff7eb3);
+          color:white;
+          font-family:Poppins;
+          text-align:center;">
+          <h1 style="font-size:42px;">SHE SAID YES 💖😭</h1>
+          <p style="font-size:20px;">
+            Best decision ever.<br>
+            Happy Valentine’s Day, Anisha ❤️
+          </p>
+        </div>
+      `;
+
+      setInterval(createHeart, 250);
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    function confettiBoom() {
+      for (let i = 0; i < 120; i++) {
+        const conf = document.createElement("div");
+        conf.className = "confetti";
+        conf.style.left = Math.random() * 100 + "vw";
+        conf.style.top = "-10px";
+        conf.style.backgroundColor = 
+          ["#ff4d6d","#ffd166","#06d6a0","#4cc9f0"][Math.floor(Math.random()*4)];
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 3000);
+      }
+    }
+
+    setInterval(createHeart, 400);
+  </script>
+
+</body>
+</html>
